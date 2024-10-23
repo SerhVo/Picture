@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 const modals = () => {
-  function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
+  function bindModal(triggerSelector, modalSelector, closeSelector, destroy = false) {
     const trigger = document.querySelectorAll(triggerSelector),
       modal = document.querySelector(modalSelector),
       close = document.querySelector(closeSelector),
@@ -23,6 +23,9 @@ const modals = () => {
       item.addEventListener("click", e => {
         if (e.target) {
           e.preventDefault();
+        }
+        if (destroy) {
+          item.remove();
         }
         window.forEach(item => {
           item.style.display = "none";
@@ -41,7 +44,7 @@ const modals = () => {
       document.body.style.marginRight = `0px`;
     });
     modal.addEventListener("click", e => {
-      if (e.target === modal && closeClickOverlay) {
+      if (e.target === modal) {
         window.forEach(item => {
           item.style.display = "none";
         });
@@ -62,6 +65,8 @@ const modals = () => {
       if (!display) {
         document.querySelector(selector).style.display = "block";
         document.body.style.overflow = "hidden";
+        let scroll = calcScroll();
+        document.body.style.marginRight = `${scroll}px`;
       }
     }, time);
   }
@@ -78,6 +83,7 @@ const modals = () => {
   }
   bindModal(".button-design", ".popup-design", ".popup-design .popup-close");
   bindModal(".button-consultation", ".popup-consultation", ".popup-consultation .popup-close");
+  bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
   showModalByTime(".popup-consultation", 6000); // раскоментировать для задания
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modals);
