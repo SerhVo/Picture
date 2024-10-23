@@ -1,4 +1,6 @@
 const modals = () => {
+  let btnPressed = false; // Определяем переменную для отслеживания нажатия
+
   function bindModal(
     triggerSelector,
     modalSelector,
@@ -16,11 +18,15 @@ const modals = () => {
         if (e.target) {
           e.preventDefault();
         }
-        if (destroy) { item.remove(); }
-        
+        btnPressed = true;
+
+        if (destroy) {
+          item.remove();
+        }
 
         window.forEach((item) => {
           item.style.display = "none";
+          item.classList.add("animated", "fadeIn");
         });
 
         modal.style.display = "block";
@@ -81,6 +87,17 @@ const modals = () => {
     div.remove();
     return scrollWidth;
   }
+  function openByScroll(selector) {
+    window.addEventListener("scroll", () => {
+      if (
+        !btnPressed &&
+        window.scrollY + document.documentElement.clientHeight >=
+          document.documentElement.scrollHeight
+      ) {
+        document.querySelector(selector).click();
+      }
+    });
+  }
 
   bindModal(".button-design", ".popup-design", ".popup-design .popup-close");
   bindModal(
@@ -88,7 +105,8 @@ const modals = () => {
     ".popup-consultation",
     ".popup-consultation .popup-close"
   );
-  bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true); 
+  bindModal(".fixed-gift", ".popup-gift", ".popup-gift .popup-close", true);
+  openByScroll(".fixed-gift");
   showModalByTime(".popup-consultation", 6000); // раскоментировать для задания
 };
 export default modals;
