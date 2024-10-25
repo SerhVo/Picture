@@ -15,5 +15,5 @@ window.addEventListener("DOMContentLoaded", () => {
   mask('[name="phone"]'); // Запуск модуля маски
   checkTextInputs('[name="name"]'); // check
   checkTextInputs('[name="message"]'); // check
-  showMoreStyles(".button-styles", ".styles-2"); // Запуск модуля показа больше стилей для карточек
+  showMoreStyles(".button-styles", "#styles .row"); // Запуск модуля показа больше стилей для карточек
 });
