@@ -48,14 +48,16 @@ const sliders = (slides, dir, prev, next) => {
         if (dir === 'vertical') {
             paused = setInterval(function() {
                 plusSlides(1);
-                items[slideIndex - 1].classList.add('slideInDown');
-            }, 3000);
+                items[slideIndex - 1].classList.add("slideInLeft");
+            }, 5000);
         } else {
             paused = setInterval(function() {
                 plusSlides(1);
-                items[slideIndex - 1].classList.remove('slideInRight');
-                items[slideIndex - 1].classList.add('slideInLeft');
-            }, 3000);
+                items[slideIndex - 1].classList.remove(
+                  "slideInLeft"
+                );
+                items[slideIndex - 1].classList.add("slideInRight");
+            }, 10000);
         }
     }
     activateAnimation();
