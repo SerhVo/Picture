@@ -1,5 +1,5 @@
 # Picture
-# 📂 HTML, CSS, and JavaScript Project
+### 📂 HTML, CSS, and JavaScript Project
 
 Hello! This repository contains the completed project based on the provided layout and technical requirements. All necessary elements have been added and configured per the guidelines, with attention to cross-browser compatibility, modularity, interactive functions, and responsiveness.
 
